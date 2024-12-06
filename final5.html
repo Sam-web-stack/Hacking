@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hacker-Style Validator</title>
+  <style>
+    body {
+      background-color: black;
+      color: #00ff00; /* Hacker green */
+      font-family: "Courier New", Courier, monospace;
+      text-align: center;
+      padding: 50px;
+    }
+    input {
+      padding: 10px;
+      margin: 10px;
+      width: 300px;
+      font-size: 16px;
+      font-family: "Courier New", Courier, monospace;
+      background-color: black;
+      color: #00ff00;
+      border: 2px solid #00ff00;
+    }
+    input:focus {
+      outline: none;
+    }
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      font-family: "Courier New", Courier, monospace;
+      color: black;
+      background-color: #00ff00;
+      border: 2px solid #00ff00;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: black;
+      color: #00ff00;
+    }
+    .result {
+      margin-top: 20px;
+      font-size: 18px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <h1>Hacker Only</h1>
+  <h2>Number Validator</h2>
+  <input type="text" id="phoneNumber" placeholder="Enter phone number">
+  <button onclick="validateNumber()">Check</button>
+  <div class="result" id="result"></div>
+
+  <script>
+    document.getElementById('phoneNumber').addEventListener('input', (event) => {
+      const inputField = event.target;
+      const validCharacters = /^[0-9\-+]*$/;
+      if (!validCharacters.test(inputField.value)) {
+        inputField.value = inputField.value.slice(0, -1); // Remove invalid character
+      }
+    });
+
+    function validateNumber() {
+      const input = document.getElementById('phoneNumber').value;
+      const resultDiv = document.getElementById('result');
+
+      if (input.includes('-')) {
+        resultDiv.textContent = "Success to log in!";
+        resultDiv.style.color = "#00ff00";
+      } else {
+        resultDiv.textContent = "Invalid input! Phone number must contain '-'!";
+        resultDiv.style.color = "red";
+      }
+    }
+  </script>
+</body>
+</html>
